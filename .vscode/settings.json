@@ -10,7 +10,8 @@
         ".specify/scripts/bash/": true,
         ".specify/scripts/powershell/": true,
         "git rev-parse": true,
-        "&": true
+        "&": true,
+        "ConvertTo-Json": true
     }
 }
 
