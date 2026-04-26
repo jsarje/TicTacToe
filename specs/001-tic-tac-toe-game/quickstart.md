@@ -53,5 +53,6 @@ Open the local URL emitted by the Blazor app and manually validate:
 - Occupied-space clicks are ignored
 - All win conditions and draw completion
 - Restart from active and completed games
+- Moves, status updates, and restart actions render without perceptible delay
 - Keyboard play with Tab, Enter, and Space
 - Mobile-width layout without horizontal scrolling

@@ -18,7 +18,7 @@ Build a greenfield .NET 10 standalone Blazor WebAssembly application that hosts 
 **Target Platform**: Standalone WebAssembly in modern desktop and mobile browsers  
 **Project Type**: Web application with a small shared core library  
 **Performance Goals**: Moves, status updates, and restart actions should render immediately with no perceptible delay during manual validation  
-**Constraints**: Minimal external libraries, no backend or persistence, keyboard-accessible controls, readable layout without horizontal scrolling on common mobile widths  
+**Constraints**: Minimal external libraries, no backend or persistence, keyboard-accessible controls, concise user-visible fallback if the game screen fails to render, readable layout without horizontal scrolling on common mobile widths  
 **Scale/Scope**: One SPA, one game screen, nine board cells, one active local game session at a time
 
 ## Constitution Check
@@ -29,8 +29,8 @@ Build a greenfield .NET 10 standalone Blazor WebAssembly application that hosts 
 
 - **Code Quality**: Split responsibilities between `src/TicTacToe.Core` for game rules and state transitions and `src/TicTacToe.Web` for rendering and interaction. This keeps the UI thin and the rule engine independently testable while avoiding unnecessary architectural layers.
 - **Testing**: Cover game rules with unit tests for turn alternation, invalid moves, win lines, draw detection, and restart. Cover rendering and user interaction with bUnit component tests for status messaging, button behavior, disabled states after completion, and restart flow. Full browser E2E coverage is omitted because the hot path is fully local and can be exercised through component tests plus manual responsive validation.
-- **UX Consistency**: The feature establishes the repository's baseline game interaction pattern with one visible board, one status region, and one always-available restart control. No deviation from the spec's interaction model is planned.
-- **Performance**: Performance impact is explicitly negligible for a 3x3 local board. Verification will rely on manual testing of the hot path to confirm immediate visual updates after moves and restart actions.
+- **UX Consistency**: The feature establishes the repository's baseline game interaction pattern with one visible board, one status region, one always-available restart control, and a concise fallback message if the page cannot render. No deviation from the spec's interaction model is planned.
+- **Performance**: Performance impact is explicitly negligible for a 3x3 local board. Verification will rely on explicit manual testing of the hot path to confirm immediate visual updates after moves, status changes, and restart actions.
 - **Increment Size**: Deliver in small slices: scaffold solution and test projects, implement and test core game rules, build the Blazor UI and accessibility behavior, then finish responsive styling and validation.
 
 ## Project Structure
@@ -74,7 +74,7 @@ tests/
 
 - **Code Quality**: Data model and UI contract keep the design constrained to a single game session and a single interactive screen, which supports small focused components and a minimal service boundary.
 - **Testing**: The design artifacts preserve unit and component test coverage as first-class deliverables, with no uncovered critical path left unexplained.
-- **UX Consistency**: The contract fixes a single layout, status region behavior, and consistent board interaction across new, active, win, and draw states.
+- **UX Consistency**: The contract fixes a single layout, status region behavior, and consistent board interaction across new, active, win, draw, and render-failure fallback states.
 - **Performance**: No additional design choice introduces material performance risk beyond normal Blazor rendering of a tiny component tree.
 - **Increment Size**: The artifact set supports implementation in reviewable slices with clear checkpoints and no constitutional waiver.
 

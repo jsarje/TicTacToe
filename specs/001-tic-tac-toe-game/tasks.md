@@ -115,10 +115,11 @@
 
 **Purpose**: Finish responsive, accessibility, and documentation work that spans multiple stories.
 
-- [ ] T027 [P] Refine responsive layout and no-scroll mobile styling in `src/TicTacToe.Web/Pages/Home.razor.css` and `src/TicTacToe.Web/Components/GameBoard.razor.css`
-- [ ] T028 [P] Finalize accessible labels, live-region semantics, and visible focus treatment in `src/TicTacToe.Web/Components/GameBoard.razor`, `src/TicTacToe.Web/Components/GameStatus.razor`, and `src/TicTacToe.Web/Components/RestartButton.razor`
-- [ ] T029 [P] Update project bootstrap, test, and run instructions in `README.md`
-- [ ] T030 Run the manual validation checklist from `specs/001-tic-tac-toe-game/quickstart.md`
+- [ ] T027 [P] Add a concise render-failure fallback using an error boundary in `src/TicTacToe.Web/App.razor` and `src/TicTacToe.Web/Pages/Home.razor`
+- [ ] T028 [P] Refine responsive layout and no-scroll mobile styling in `src/TicTacToe.Web/Pages/Home.razor.css` and `src/TicTacToe.Web/Components/GameBoard.razor.css`
+- [ ] T029 [P] Finalize accessible labels, live-region semantics, and visible focus treatment in `src/TicTacToe.Web/Components/GameBoard.razor`, `src/TicTacToe.Web/Components/GameStatus.razor`, and `src/TicTacToe.Web/Components/RestartButton.razor`
+- [ ] T030 [P] Update project bootstrap, test, and run instructions in `README.md`
+- [ ] T031 Run the manual validation checklist, including hot-path responsiveness checks, from `specs/001-tic-tac-toe-game/quickstart.md`
 
 ---
 
@@ -129,15 +130,15 @@
 - **Setup (Phase 1)**: No dependencies - start immediately.
 - **Foundational (Phase 2)**: Depends on Setup - blocks all user stories.
 - **User Story 1 (Phase 3)**: Depends on Foundational - establishes the MVP.
-- **User Story 2 (Phase 4)**: Depends on the session and board flow from US1.
-- **User Story 3 (Phase 5)**: Depends on the active session flow from US1 and the status model from US2.
+- **User Story 2 (Phase 4)**: Depends on Foundational - can be implemented against shared session state and integrated with US1 when both are complete.
+- **User Story 3 (Phase 5)**: Depends on Foundational - can be implemented as session reset behavior without waiting for other stories to finish.
 - **Polish (Phase 6)**: Depends on all selected user stories being complete.
 
 ### User Story Dependencies
 
 - **US1 (P1)**: No dependency on other user stories after Foundational.
-- **US2 (P2)**: Depends on US1 because status content is driven by live gameplay state.
-- **US3 (P3)**: Depends on US1 for resettable session state and on US2 for full status reset verification.
+- **US2 (P2)**: No dependency on other user stories after Foundational; it can render status from explicit session fixtures even before full gameplay wiring is complete.
+- **US3 (P3)**: No dependency on other user stories after Foundational; it can reset a session shell independently and integrate with gameplay once US1 is present.
 
 ### Within Each User Story
 
@@ -153,7 +154,7 @@
 - T010, T011, and T012 can run together before US1 implementation.
 - T017 and T018 can run together before US2 implementation.
 - T022 and T023 can run together before US3 implementation.
-- T027, T028, and T029 can run together during polish.
+- T027, T028, T029, and T030 can run together during polish.
 
 ---
 
@@ -196,13 +197,13 @@ Task: "T023 [US3] Add bUnit tests for the always-available restart flow in tests
 2. Ship US1 as the first playable MVP.
 3. Add US2 to complete player-facing status feedback.
 4. Add US3 to support repeated play sessions.
-5. Finish responsive, accessibility, and documentation polish.
+6. Finish failure-state handling, responsive, accessibility, and documentation polish.
 
 ### Parallel Team Strategy
 
 1. One developer completes solution scaffolding while another prepares shared test infrastructure.
-2. After Foundational is complete, one developer can drive core-rule work while another builds the Blazor components.
-3. Polish tasks can be split across styling, accessibility, and documentation without file conflicts.
+2. After Foundational is complete, separate developers can take US1, US2, and US3 in parallel because each story has its own tests and implementation files.
+3. Polish tasks can be split across failure-state handling, styling, accessibility, and documentation without file conflicts.
 
 ---
 
