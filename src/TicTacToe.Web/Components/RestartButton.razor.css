@@ -1,0 +1,22 @@
+.restart-button {
+    justify-self: start;
+    padding: 0.85rem 1.2rem;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ef5d38, #cc4724);
+    color: #fff9f3;
+    font: inherit;
+    font-weight: 700;
+    box-shadow: 0 12px 24px rgba(204, 71, 36, 0.28);
+    transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.restart-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 28px rgba(204, 71, 36, 0.34);
+}
+
+.restart-button:focus-visible {
+    outline: 3px solid #0f766e;
+    outline-offset: 3px;
+}

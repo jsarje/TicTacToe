@@ -1,0 +1,114 @@
+:root {
+    color-scheme: light;
+    --canvas: #fff8ef;
+    --canvas-shadow: #f5dca7;
+    --surface: rgba(255, 252, 245, 0.92);
+    --text-strong: #18232f;
+    --text-muted: #5b6470;
+    --accent-strong: #cc4724;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background:
+        radial-gradient(circle at top left, rgba(239, 93, 56, 0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.12), transparent 28%),
+        linear-gradient(180deg, var(--canvas) 0%, #fffdf8 100%);
+    color: var(--text-strong);
+    font-family: "Aptos", "Segoe UI Variable Text", "Trebuchet MS", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: break-word;
+}
+
+h1:focus {
+    outline: none;
+}
+
+#blazor-error-ui {
+    color-scheme: light only;
+    background: #fff6cc;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.blazor-error-boundary {
+    background: #8a1d14;
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    color: white;
+}
+
+.blazor-error-boundary::after {
+    content: "An error has occurred.";
+}
+
+.app-fallback {
+    display: grid;
+    align-content: center;
+    gap: 0.5rem;
+    min-height: 60vh;
+}
+
+.app-fallback h1,
+.app-fallback p {
+    margin: 0;
+}
+
+.loading-progress {
+    position: absolute;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    inset: 20vh 0 auto 0;
+    margin: 0 auto 0 auto;
+}
+
+    .loading-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+.loading-progress circle:last-child {
+    stroke: #cc4724;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}

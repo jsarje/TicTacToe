@@ -23,10 +23,10 @@
 
 **Purpose**: Scaffold the greenfield .NET solution and establish baseline project configuration.
 
-- [ ] T001 Scaffold the solution and projects in `TicTacToe.sln`, `src/TicTacToe.Core/TicTacToe.Core.csproj`, `src/TicTacToe.Web/TicTacToe.Web.csproj`, `tests/TicTacToe.Core.Tests/TicTacToe.Core.Tests.csproj`, and `tests/TicTacToe.Web.Tests/TicTacToe.Web.Tests.csproj`
-- [ ] T002 Add project references and required test packages in `src/TicTacToe.Web/TicTacToe.Web.csproj`, `tests/TicTacToe.Core.Tests/TicTacToe.Core.Tests.csproj`, and `tests/TicTacToe.Web.Tests/TicTacToe.Web.Tests.csproj`
-- [ ] T003 [P] Configure shared SDK, nullable, implicit usings, and test defaults in `Directory.Build.props`
-- [ ] T004 [P] Add repository-wide test usings and package aliases in `tests/TicTacToe.Core.Tests/Usings.cs` and `tests/TicTacToe.Web.Tests/Usings.cs`
+- [X] T001 Scaffold the solution and projects in `TicTacToe.sln`, `src/TicTacToe.Core/TicTacToe.Core.csproj`, `src/TicTacToe.Web/TicTacToe.Web.csproj`, `tests/TicTacToe.Core.Tests/TicTacToe.Core.Tests.csproj`, and `tests/TicTacToe.Web.Tests/TicTacToe.Web.Tests.csproj`
+- [X] T002 Add project references and required test packages in `src/TicTacToe.Web/TicTacToe.Web.csproj`, `tests/TicTacToe.Core.Tests/TicTacToe.Core.Tests.csproj`, and `tests/TicTacToe.Web.Tests/TicTacToe.Web.Tests.csproj`
+- [X] T003 [P] Configure shared SDK, nullable, implicit usings, and test defaults in `Directory.Build.props`
+- [X] T004 [P] Add repository-wide test usings and package aliases in `tests/TicTacToe.Core.Tests/Usings.cs` and `tests/TicTacToe.Web.Tests/Usings.cs`
 
 ---
 
@@ -36,11 +36,11 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T005 Create core domain types in `src/TicTacToe.Core/Models/PlayerMark.cs`, `src/TicTacToe.Core/Models/GameResult.cs`, `src/TicTacToe.Core/Models/BoardSpace.cs`, and `src/TicTacToe.Core/Models/GameSession.cs`
-- [ ] T006 Create the game engine contract and placeholder implementation in `src/TicTacToe.Core/Services/IGameEngine.cs` and `src/TicTacToe.Core/Services/GameEngine.cs`
-- [ ] T007 [P] Create the single-screen Blazor shells in `src/TicTacToe.Web/Pages/Home.razor`, `src/TicTacToe.Web/Components/GameBoard.razor`, `src/TicTacToe.Web/Components/GameStatus.razor`, and `src/TicTacToe.Web/Components/RestartButton.razor`
-- [ ] T008 [P] Create test host helpers for core and component tests in `tests/TicTacToe.Core.Tests/GameSessionTestData.cs` and `tests/TicTacToe.Web.Tests/TestContextFactory.cs`
-- [ ] T009 Wire the application shell and core service registration in `src/TicTacToe.Web/Program.cs`, `src/TicTacToe.Web/App.razor`, and `src/TicTacToe.Web/Layout/MainLayout.razor`
+- [X] T005 Create core domain types in `src/TicTacToe.Core/Models/PlayerMark.cs`, `src/TicTacToe.Core/Models/GameResult.cs`, `src/TicTacToe.Core/Models/BoardSpace.cs`, and `src/TicTacToe.Core/Models/GameSession.cs`
+- [X] T006 Create the game engine contract and placeholder implementation in `src/TicTacToe.Core/Services/IGameEngine.cs` and `src/TicTacToe.Core/Services/GameEngine.cs`
+- [X] T007 [P] Create the single-screen Blazor shells in `src/TicTacToe.Web/Pages/Home.razor`, `src/TicTacToe.Web/Components/GameBoard.razor`, `src/TicTacToe.Web/Components/GameStatus.razor`, and `src/TicTacToe.Web/Components/RestartButton.razor`
+- [X] T008 [P] Create test host helpers for core and component tests in `tests/TicTacToe.Core.Tests/GameSessionTestData.cs` and `tests/TicTacToe.Web.Tests/TestContextFactory.cs`
+- [X] T009 Wire the application shell and core service registration in `src/TicTacToe.Web/Program.cs`, `src/TicTacToe.Web/App.razor`, and `src/TicTacToe.Web/Layout/MainLayout.razor`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel.
 
@@ -54,16 +54,16 @@
 
 ### Tests for User Story 1
 
-- [ ] T010 [P] [US1] Add unit tests for turn alternation and occupied-space rejection in `tests/TicTacToe.Core.Tests/GameEngineMoveTests.cs`
-- [ ] T011 [P] [US1] Add unit tests for win-line and draw detection in `tests/TicTacToe.Core.Tests/GameEngineCompletionTests.cs`
-- [ ] T012 [P] [US1] Add bUnit interaction tests for full-match play and post-game move blocking in `tests/TicTacToe.Web.Tests/Pages/HomeGameplayTests.cs`
+- [X] T010 [P] [US1] Add unit tests for turn alternation and occupied-space rejection in `tests/TicTacToe.Core.Tests/GameEngineMoveTests.cs`
+- [X] T011 [P] [US1] Add unit tests for win-line and draw detection in `tests/TicTacToe.Core.Tests/GameEngineCompletionTests.cs`
+- [X] T012 [P] [US1] Add bUnit interaction tests for full-match play and post-game move blocking in `tests/TicTacToe.Web.Tests/Pages/HomeGameplayTests.cs`
 
 ### Implementation for User Story 1
 
-- [ ] T013 [US1] Implement move validation, turn switching, win detection, and draw detection in `src/TicTacToe.Core/Services/GameEngine.cs`
-- [ ] T014 [P] [US1] Implement the 3x3 interactive board with nine native buttons in `src/TicTacToe.Web/Components/GameBoard.razor` and `src/TicTacToe.Web/Components/GameBoard.razor.css`
-- [ ] T015 [US1] Implement page-level gameplay orchestration and board updates in `src/TicTacToe.Web/Pages/Home.razor` and `src/TicTacToe.Web/Pages/Home.razor.cs`
-- [ ] T016 [US1] Prevent repeat selections and additional moves after completion in `src/TicTacToe.Web/Pages/Home.razor.cs` and `src/TicTacToe.Web/Components/GameBoard.razor`
+- [X] T013 [US1] Implement move validation, turn switching, win detection, and draw detection in `src/TicTacToe.Core/Services/GameEngine.cs`
+- [X] T014 [P] [US1] Implement the 3x3 interactive board with nine native buttons in `src/TicTacToe.Web/Components/GameBoard.razor` and `src/TicTacToe.Web/Components/GameBoard.razor.css`
+- [X] T015 [US1] Implement page-level gameplay orchestration and board updates in `src/TicTacToe.Web/Pages/Home.razor` and `src/TicTacToe.Web/Pages/Home.razor.cs`
+- [X] T016 [US1] Prevent repeat selections and additional moves after completion in `src/TicTacToe.Web/Pages/Home.razor.cs` and `src/TicTacToe.Web/Components/GameBoard.razor`
 
 **Checkpoint**: User Story 1 should now support a complete playable match and be testable on its own.
 
@@ -77,14 +77,14 @@
 
 ### Tests for User Story 2
 
-- [ ] T017 [P] [US2] Add unit tests for derived status messaging in `tests/TicTacToe.Core.Tests/GameSessionStatusTests.cs`
-- [ ] T018 [P] [US2] Add bUnit tests for live status announcements across active and terminal states in `tests/TicTacToe.Web.Tests/Components/GameStatusTests.cs`
+- [X] T017 [P] [US2] Add unit tests for derived status messaging in `tests/TicTacToe.Core.Tests/GameSessionStatusTests.cs`
+- [X] T018 [P] [US2] Add bUnit tests for live status announcements across active and terminal states in `tests/TicTacToe.Web.Tests/Components/GameStatusTests.cs`
 
 ### Implementation for User Story 2
 
-- [ ] T019 [US2] Add status-message derivation to the session model in `src/TicTacToe.Core/Models/GameSession.cs`
-- [ ] T020 [P] [US2] Implement the persistent live status region in `src/TicTacToe.Web/Components/GameStatus.razor` and `src/TicTacToe.Web/Components/GameStatus.razor.css`
-- [ ] T021 [US2] Bind turn, win, and draw messages to the page state in `src/TicTacToe.Web/Pages/Home.razor` and `src/TicTacToe.Web/Pages/Home.razor.cs`
+- [X] T019 [US2] Add status-message derivation to the session model in `src/TicTacToe.Core/Models/GameSession.cs`
+- [X] T020 [P] [US2] Implement the persistent live status region in `src/TicTacToe.Web/Components/GameStatus.razor` and `src/TicTacToe.Web/Components/GameStatus.razor.css`
+- [X] T021 [US2] Bind turn, win, and draw messages to the page state in `src/TicTacToe.Web/Pages/Home.razor` and `src/TicTacToe.Web/Pages/Home.razor.cs`
 
 **Checkpoint**: User Story 2 should now communicate active-turn and end-of-game states independently of restart behavior.
 
@@ -98,14 +98,14 @@
 
 ### Tests for User Story 3
 
-- [ ] T022 [P] [US3] Add unit tests for restart behavior from active and completed sessions in `tests/TicTacToe.Core.Tests/GameEngineRestartTests.cs`
-- [ ] T023 [P] [US3] Add bUnit tests for the always-available restart flow in `tests/TicTacToe.Web.Tests/Pages/HomeRestartTests.cs`
+- [X] T022 [P] [US3] Add unit tests for restart behavior from active and completed sessions in `tests/TicTacToe.Core.Tests/GameEngineRestartTests.cs`
+- [X] T023 [P] [US3] Add bUnit tests for the always-available restart flow in `tests/TicTacToe.Web.Tests/Pages/HomeRestartTests.cs`
 
 ### Implementation for User Story 3
 
-- [ ] T024 [US3] Implement session reset behavior in `src/TicTacToe.Core/Services/GameEngine.cs`
-- [ ] T025 [P] [US3] Implement the always-visible restart control in `src/TicTacToe.Web/Components/RestartButton.razor`
-- [ ] T026 [US3] Wire restart actions and fresh-session state into `src/TicTacToe.Web/Pages/Home.razor` and `src/TicTacToe.Web/Pages/Home.razor.cs`
+- [X] T024 [US3] Implement session reset behavior in `src/TicTacToe.Core/Services/GameEngine.cs`
+- [X] T025 [P] [US3] Implement the always-visible restart control in `src/TicTacToe.Web/Components/RestartButton.razor`
+- [X] T026 [US3] Wire restart actions and fresh-session state into `src/TicTacToe.Web/Pages/Home.razor` and `src/TicTacToe.Web/Pages/Home.razor.cs`
 
 **Checkpoint**: User Story 3 should now provide a one-action restart from any game state.
 
@@ -115,10 +115,10 @@
 
 **Purpose**: Finish responsive, accessibility, and documentation work that spans multiple stories.
 
-- [ ] T027 [P] Add a concise render-failure fallback using an error boundary in `src/TicTacToe.Web/App.razor` and `src/TicTacToe.Web/Pages/Home.razor`
-- [ ] T028 [P] Refine responsive layout and no-scroll mobile styling in `src/TicTacToe.Web/Pages/Home.razor.css` and `src/TicTacToe.Web/Components/GameBoard.razor.css`
-- [ ] T029 [P] Finalize accessible labels, live-region semantics, and visible focus treatment in `src/TicTacToe.Web/Components/GameBoard.razor`, `src/TicTacToe.Web/Components/GameStatus.razor`, and `src/TicTacToe.Web/Components/RestartButton.razor`
-- [ ] T030 [P] Update project bootstrap, test, and run instructions in `README.md`
+- [X] T027 [P] Add a concise render-failure fallback using an error boundary in `src/TicTacToe.Web/App.razor` and `src/TicTacToe.Web/Pages/Home.razor`
+- [X] T028 [P] Refine responsive layout and no-scroll mobile styling in `src/TicTacToe.Web/Pages/Home.razor.css` and `src/TicTacToe.Web/Components/GameBoard.razor.css`
+- [X] T029 [P] Finalize accessible labels, live-region semantics, and visible focus treatment in `src/TicTacToe.Web/Components/GameBoard.razor`, `src/TicTacToe.Web/Components/GameStatus.razor`, and `src/TicTacToe.Web/Components/RestartButton.razor`
+- [X] T030 [P] Update project bootstrap, test, and run instructions in `README.md`
 - [ ] T031 Run the manual validation checklist, including hot-path responsiveness checks, from `specs/001-tic-tac-toe-game/quickstart.md`
 
 ---
