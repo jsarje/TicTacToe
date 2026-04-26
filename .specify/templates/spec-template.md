@@ -74,6 +74,8 @@
 
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
+- What does the user see during loading, empty, and failure states?
+- How is the experience preserved when latency or expensive operations occur?
 
 ## Requirements *(mandatory)*
 
@@ -89,11 +91,30 @@
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-006**: System MUST define the automated test coverage required to verify critical behavior.
+- **FR-007**: System MUST preserve established UX patterns or explicitly document approved
+  deviations.
+- **FR-008**: System MUST state any performance budget or confirm that the feature has no material
+  performance impact.
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-009**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
+- **FR-010**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+
+## Experience Consistency *(mandatory for user-facing changes)*
+
+- **Existing Patterns**: [List the screens, components, or interaction patterns this feature MUST
+  align with]
+- **States**: [Describe expected success, loading, empty, validation, and error states]
+- **Accessibility**: [List keyboard, screen reader, focus, color contrast, or semantic needs]
+
+## Performance Requirements *(mandatory)*
+
+- **Budget**: [Define response time, render time, throughput, memory, or state "No material
+  impact" with rationale]
+- **Hot Path**: [Identify the workflow or operation most likely to regress]
+- **Validation**: [Describe how performance will be measured or observed]
 
 ### Key Entities *(include if feature involves data)*
 
@@ -113,6 +134,9 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-005**: [Quality metric, e.g., "Required automated tests cover every critical acceptance path"]
+- **SC-006**: [Experience or performance metric, e.g., "Primary interaction stays within the
+  defined latency budget"]
 
 ## Assumptions
 
