@@ -31,7 +31,16 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Code Quality**: Describe the affected modules, expected refactors, and any complexity that
+  needs explicit justification.
+- **Testing**: List the unit, integration, and UI or component tests required for the feature;
+  explain any omitted test coverage.
+- **UX Consistency**: State which existing patterns, components, or interaction rules the feature
+  reuses and identify any approved deviations.
+- **Performance**: Define a measurable budget or state why performance impact is negligible;
+  include how the change will be verified.
+- **Increment Size**: Break delivery into reviewable slices with clear dependencies and validation
+  checkpoints.
 
 ## Project Structure
 
@@ -100,5 +109,5 @@ directories captured above]
 
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| [e.g., UX pattern deviation] | [current need] | [why existing pattern is insufficient] |
+| [e.g., performance tradeoff] | [specific problem] | [why simpler approach misses budget] |
