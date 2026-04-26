@@ -9,7 +9,9 @@
     "chat.tools.terminal.autoApprove": {
         ".specify/scripts/bash/": true,
         ".specify/scripts/powershell/": true,
-        "git rev-parse": true
+        "git rev-parse": true,
+        "&": true,
+        "ConvertTo-Json": true
     }
 }
 

@@ -1,0 +1,51 @@
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.game-board__space {
+    aspect-ratio: 1;
+    border: 0;
+    border-radius: 1.25rem;
+    background: linear-gradient(145deg, #fef7ec, #f8e8c8);
+    color: var(--text-strong);
+    font-family: "Aptos Display", "Trebuchet MS", "Segoe UI Variable Display", sans-serif;
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    font-weight: 700;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08), 0 12px 24px rgba(15, 23, 42, 0.12);
+    transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.game-board__space:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08), 0 16px 28px rgba(15, 23, 42, 0.16);
+}
+
+.game-board__space:disabled {
+    cursor: default;
+}
+
+.game-board__space--filled {
+    background: linear-gradient(145deg, #fffaf0, #f8e7b8);
+}
+
+.game-board__space--winning {
+    background: linear-gradient(145deg, #14b8a6, #0f766e);
+    color: #f8fffd;
+}
+
+.game-board__space:focus-visible {
+    outline: 3px solid #0f766e;
+    outline-offset: 3px;
+}
+
+@media (max-width: 639px) {
+    .game-board {
+        gap: 0.55rem;
+    }
+
+    .game-board__space {
+        border-radius: 1rem;
+    }
+}

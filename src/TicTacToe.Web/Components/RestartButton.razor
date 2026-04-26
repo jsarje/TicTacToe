@@ -1,0 +1,13 @@
+<button type="button" class="restart-button" @onclick="HandleRestartAsync">
+    Restart game
+</button>
+
+@code {
+    [Parameter, EditorRequired]
+    public EventCallback OnRestart { get; set; }
+
+    private Task HandleRestartAsync()
+    {
+        return OnRestart.InvokeAsync();
+    }
+}

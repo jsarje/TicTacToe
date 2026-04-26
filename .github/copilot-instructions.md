@@ -1,4 +1,4 @@
-# Web Application Development Guidelines
+﻿# Web Application Development Guidelines
 
 ## Programming Language: C#
 ## Framework: Blazor
