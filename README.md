@@ -4,6 +4,8 @@ Standalone Blazor WebAssembly tic-tac-toe game with a small shared core library 
 
 ## Approach
 
+Note used GPT-5.4 model for all interactions with Github Copilot
+
 - Pulled in instructions for C# and Blazor from https://github.com/github/awesome-copilot to help with code styling and best practices
 - Initialised spec-kit https://github.com/github/spec-kit
 - /speckit.constitution with their recommended prompt
@@ -13,3 +15,10 @@ Standalone Blazor WebAssembly tic-tac-toe game with a small shared core library 
 - /speckit.implement
 - Manually verified functionality was as expected but noticed layout was a bit off.
 - Raised issue for the layout and assigned to copilot cloud agent
+- Reviewed and merged the PR to fix layout
+- Used VS26 Plan mode to investigate if we could publish the blazor app to github pages and then implemented this.
+
+## Enhancements
+
+- Introduce playwright tests covering main paths
+- Look at implementing remote multiplayer functionality
