@@ -43,13 +43,13 @@ jobs:
       - name: Prepare GitHub Pages artifact
         shell: bash
         run: |
-          touch publish/.nojekyll
-          cp publish/index.html publish/404.html
+          touch publish/wwwroot/.nojekyll
+          cp publish/wwwroot/index.html publish/wwwroot/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: publish
+          path: publish/wwwroot
 
   deploy:
     needs: build
