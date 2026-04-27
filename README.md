@@ -2,6 +2,8 @@
 
 Standalone Blazor WebAssembly tic-tac-toe game with a small shared core library for game rules and an automated test suite for both rule logic and UI interaction.
 
+https://jsarje.github.io/TicTacToe/
+
 ## Approach
 
 Note used GPT-5.4 model for all interactions with Github Copilot
