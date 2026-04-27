@@ -2,12 +2,13 @@
     display: grid;
     gap: 1.5rem;
     align-items: start;
+    justify-items: center;
 }
 
 .home-shell__header {
     display: grid;
     gap: 0.75rem;
-    max-width: 34rem;
+    width: min(100%, 34rem);
 }
 
 .home-shell__eyebrow {
@@ -35,6 +36,7 @@
 .game-panel {
     display: grid;
     gap: 1.25rem;
+    width: min(100%, 24rem);
     padding: 1.5rem;
     border: 1px solid rgba(15, 23, 42, 0.08);
     border-radius: 1.5rem;
@@ -51,17 +53,6 @@
 .game-panel--error h2,
 .game-panel--error p {
     margin: 0;
-}
-
-@media (min-width: 900px) {
-    .home-shell {
-        grid-template-columns: minmax(0, 1fr) minmax(19rem, 24rem);
-        gap: 2rem;
-    }
-
-    .game-panel {
-        align-self: center;
-    }
 }
 
 @media (max-width: 639px) {
