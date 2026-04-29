@@ -10,8 +10,10 @@
 
 - Cookie name: `ttt-browser`
 - Scope: Same-site requests to the TicTacToe server host
-- Responsibility: The server issues the cookie when a browser without identity first loads the app or calls an API endpoint
+- Persistence: Persistent cookie with a 30-day lifetime so the same browser can close and reopen without losing its browser association during normal return visits
+- Responsibility: The server issues the cookie when a browser without identity first loads the app or calls an API endpoint, and renews its expiry on successful requests
 - Client behavior: The client does not send a browser identifier in the JSON payload; it relies on the browser cookie automatically
+- Expiry behavior: If the cookie is missing, cleared, or expired, the server creates a new browser identity and may create a new official match
 
 ## DTOs
 
@@ -113,6 +115,8 @@
 - The server must persist an accepted move before returning an updated snapshot.
 - Rejected domain move attempts do not change the persisted `revision`.
 - A stale move request returns the newest official match snapshot so the client can immediately refresh its UI.
+- A load request that arrives while another move is still being confirmed returns the last committed official snapshot rather than a partially applied or duplicated move.
+- Concurrent move requests for the same browser-owned match may result in only one accepted write for a given revision; later conflicting requests must be rejected against the updated official state.
 - Once the result is `XWins`, `OWins`, or `Draw`, additional move requests remain rejected until restart succeeds.
 - Restart always returns a fresh empty board with Player X active.
 

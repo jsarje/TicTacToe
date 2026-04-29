@@ -10,6 +10,7 @@
 ### Session 2026-04-29
 
 - Q: What persisted match should the app load on refresh? -> A: Each browser gets its own persisted match state, and refresh reloads that browser's official match rather than a shared global game.
+- Q: What does "reopen in the same browser" mean for persistence? -> A: The same browser should restore its active match after the browser is closed and reopened for normal return visits unless the user clears site data or the browser identity has expired.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -19,13 +20,14 @@ A player can refresh or reopen the game in the same browser and continue that br
 
 **Why this priority**: Preserving the current match across refreshes is the clearest user-visible outcome of moving game authority out of browser memory. Without it, the migration does not solve the main problem.
 
-**Independent Test**: Can be fully tested by starting a match, making several valid moves, refreshing the page, and verifying that the board, current turn, and game status return exactly as they were before the refresh.
+**Independent Test**: Can be fully tested by starting a match, making several valid moves, refreshing the page, closing and reopening the same browser, and verifying that the board, current turn, and game status return exactly as they were before the refresh.
 
 **Acceptance Scenarios**:
 
 1. **Given** a browser has a match in progress with persisted moves already applied, **When** the player refreshes the page in that same browser, **Then** the game reloads that browser's board state, active player, and match status before any new move can be made.
 2. **Given** a browser has a completed match with a win or draw, **When** the player reloads the game in that same browser, **Then** the completed board and final result are shown and additional moves remain unavailable until that browser starts a new match.
-3. **Given** two different browsers each have their own persisted matches, **When** one browser refreshes or plays a move, **Then** the other browser's match state remains unchanged.
+3. **Given** a browser closes and reopens without clearing site data, **When** the player returns to the game in that same browser, **Then** the browser reloads its existing official match rather than starting a new shared or empty game.
+4. **Given** two different browsers each have their own persisted matches, **When** one browser refreshes or plays a move, **Then** the other browser's match state remains unchanged.
 
 ---
 
@@ -67,6 +69,7 @@ A player receives clear feedback when a requested move cannot be applied immedia
 - If two move requests are submitted close together for the same browser's match, only the first valid request may change that official state and later conflicting requests must be rejected clearly.
 - If the game cannot retrieve the current match on initial load, the player sees a recoverable failure state rather than an empty or silently reset board.
 - If the player restarts a match after completion, the new match begins from a clean board and does not reuse the previous completed outcome.
+- If the browser's site data is cleared or its browser identity has expired, the next visit may start a new official match because the prior browser association no longer exists.
 
 ## Requirements *(mandatory)*
 
@@ -125,5 +128,5 @@ A player receives clear feedback when a requested move cannot be applied immedia
 
 - The feature continues to support one active local tic-tac-toe match per browser rather than introducing online matchmaking or shared cross-browser multiplayer state.
 - Player X remains the starting player for every new match unless a later feature changes the game rules.
-- Match state is retained until that browser's active match is replaced by a restart, ensuring normal page refreshes and short return visits restore the same official state for that browser.
+- Match state is retained until that browser's active match is replaced by a restart or the browser identity expires, ensuring normal page refreshes and short return visits restore the same official state for that browser.
 - Existing board, status, and restart interactions remain the baseline user experience, with only the minimum additions needed for loading and failure feedback.

@@ -14,14 +14,14 @@
 
 ## Browser Identity Boundary
 
-- **Decision**: Issue and read a same-site anonymous browser cookie from the server to associate requests with one browser-owned active match.
-- **Rationale**: The feature needs browser isolation without sign-in. A server-issued cookie keeps the browser-to-match association stable across refreshes and return visits in the same browser while avoiding client-generated identifiers becoming part of the trust boundary.
-- **Alternatives considered**: Local storage or session storage identifiers would work functionally but put more of the identity contract under client control. ASP.NET Core authenticated users were rejected because the feature does not require accounts.
+- **Decision**: Issue and read a persistent same-site anonymous browser cookie from the server to associate requests with one browser-owned active match, with a 30-day return-visit lifetime renewed on successful use.
+- **Rationale**: The feature needs browser isolation without sign-in and must support normal browser reopen behavior, not just same-tab refreshes. A server-issued persistent cookie keeps the browser-to-match association stable across refreshes and short return visits in the same browser while avoiding client-generated identifiers becoming part of the trust boundary.
+- **Alternatives considered**: Session-scoped cookies were rejected because they would not reliably satisfy the reopen requirement after closing the browser. Local storage or session storage identifiers would work functionally but put more of the identity contract under client control. ASP.NET Core authenticated users were rejected because the feature does not require accounts.
 
 ## Concurrency And Stale-State Handling
 
-- **Decision**: Add a revision number to the persisted match and require move requests to include the last known revision.
-- **Rationale**: The spec explicitly requires stale-board rejection and protection against near-simultaneous move requests. A simple optimistic concurrency approach lets the server reject outdated requests, return the newest official state, and avoid duplicate or partially applied moves.
+- **Decision**: Add a revision number to the persisted match and require move requests to include the last known revision, with integration coverage for both simultaneous move conflicts and refresh/load requests that arrive while a move is still being confirmed.
+- **Rationale**: The spec explicitly requires stale-board rejection and protection against near-simultaneous move requests. A simple optimistic concurrency approach lets the server reject outdated requests, return the newest official state, and avoid duplicate or partially applied moves, while explicit load-during-confirmation tests ensure the browser only sees committed state.
 - **Alternatives considered**: Blind last-write-wins updates were rejected because they can overwrite or hide concurrent decisions. Server-side locking without a revision contract was rejected because the client still needs a reliable way to understand stale state.
 
 ## API Shape
@@ -38,8 +38,8 @@
 
 ## Test And Performance Verification
 
-- **Decision**: Keep rule-level unit tests in `TicTacToe.Core.Tests`, add server integration coverage with `WebApplicationFactory`, keep bUnit tests for async client behavior, and add timing guards around load and move integration paths.
-- **Rationale**: The migration changes the testing pyramid: server transport and persistence are now as important as pure rule logic. The performance budget is modest enough that integration tests can catch obvious regressions while manual validation confirms the real app remains under the stated p95 target.
+- **Decision**: Keep rule-level unit tests in `TicTacToe.Core.Tests`, add server-side unit tests for referee, persistence mapping, and browser identity behavior, add server integration coverage with `WebApplicationFactory`, keep bUnit tests for async client behavior, and add timing guards around load and move integration paths.
+- **Rationale**: The migration changes the testing pyramid: server transport and persistence are now as important as pure rule logic. Unit tests keep revision handling, mapping, and cookie behavior precise, while integration tests catch end-to-end persistence and concurrency regressions. The performance budget is modest enough that integration tests can catch obvious regressions while manual validation confirms the real app remains under the stated p95 target.
 - **Alternatives considered**: Browser-only testing was rejected because it would make stale-state and failure-path coverage slower and less deterministic. Skipping timing checks was rejected because performance is a constitutional requirement for this repo.
 
 ## Deployment Impact
