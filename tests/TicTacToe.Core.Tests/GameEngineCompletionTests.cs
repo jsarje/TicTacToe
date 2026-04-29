@@ -34,4 +34,18 @@ public sealed class GameEngineCompletionTests
         completedSession.WinningLine.Should().BeNull();
         completedSession.AvailableMoves.Should().BeEmpty();
     }
+
+    [Fact]
+    public void EvaluateMove_ShouldRejectCompletedMatch()
+    {
+        // Arrange
+        var session = GameSessionTestData.CreateSession("XXXOO____", PlayerMark.X, GameResult.XWins, new[] { 0, 1, 2 });
+
+        // Act
+        var result = gameEngine.EvaluateMove(session, 5, PlayerMark.X);
+
+        // Assert
+        result.Accepted.Should().BeFalse();
+        result.RejectionReason.Should().Be(MoveRejectionReason.MatchComplete);
+    }
 }

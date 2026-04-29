@@ -1,0 +1,26 @@
+<ErrorBoundary>
+    <ChildContent>
+        <Router AppAssembly="@typeof(App).Assembly">
+            <Found Context="routeData">
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(Layout.MainLayout)">
+                    <main class="app-fallback" role="alert">
+                        <h1>Page unavailable</h1>
+                        <p>The game screen could not be found.</p>
+                    </main>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </ChildContent>
+    <ErrorContent Context="_">
+        <LayoutView Layout="@typeof(Layout.MainLayout)">
+            <main class="app-fallback" role="alert">
+                <h1>Game unavailable</h1>
+                <p>Refresh the page to reload the official match.</p>
+            </main>
+        </LayoutView>
+    </ErrorContent>
+</ErrorBoundary>

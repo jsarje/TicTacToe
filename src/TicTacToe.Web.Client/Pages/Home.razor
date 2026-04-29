@@ -1,0 +1,57 @@
+@page "/"
+
+<PageTitle>Tic-Tac-Toe</PageTitle>
+
+<div class="home-shell">
+    <header class="home-shell__header">
+        <p class="home-shell__eyebrow">Official Match</p>
+        <h1>Tic-Tac-Toe</h1>
+        <p class="home-shell__summary">The server owns every move, win, draw, reload, and restart so the board always reflects the latest confirmed state.</p>
+    </header>
+
+    <ErrorBoundary>
+        <ChildContent>
+            @if (isLoading && ActiveSnapshot is null)
+            {
+                <section class="game-panel game-panel--loading" role="status" aria-live="polite">
+                    <h2>Loading official match</h2>
+                    <p>Restoring the latest confirmed board for this browser.</p>
+                </section>
+            }
+            else if (ActiveSnapshot is null)
+            {
+                <section class="game-panel game-panel--error" role="alert">
+                    <h2>Board unavailable</h2>
+                    <p>@statusMessage</p>
+                    <button type="button" class="retry-button" @onclick="RetryLoadAsync">Retry</button>
+                </section>
+            }
+            else
+            {
+                <section class="game-panel" aria-label="Tic-tac-toe game screen">
+                    <GameStatus Message="@statusMessage"
+                                IsBusy="@isLoading"
+                                IsError="@hasTransientFailure" />
+                    <GameBoard Board="@Board"
+                               IsInteractive="@IsBoardInteractive"
+                               IsBusy="@isLoading"
+                               WinningLine="@ActiveSnapshot.WinningLine"
+                               OnSpaceSelected="HandleSpaceSelectionAsync" />
+                    <div class="game-panel__actions">
+                        <RestartButton Disabled="@isLoading" OnRestart="RestartGameAsync" />
+                        @if (hasTransientFailure)
+                        {
+                            <button type="button" class="retry-button" @onclick="RetryLoadAsync">Retry sync</button>
+                        }
+                    </div>
+                </section>
+            }
+        </ChildContent>
+        <ErrorContent Context="_">
+            <section class="game-panel game-panel--error" role="alert">
+                <h2>Board unavailable</h2>
+                <p>Refresh to reload the official match.</p>
+            </section>
+        </ErrorContent>
+    </ErrorBoundary>
+</div>

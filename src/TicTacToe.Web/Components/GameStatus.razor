@@ -1,9 +1,0 @@
-<section class="game-status" aria-label="Game status">
-    <p class="game-status__label">Status</p>
-    <p class="game-status__message" role="status" aria-live="polite" aria-atomic="true">@Message</p>
-</section>
-
-@code {
-    [Parameter, EditorRequired]
-    public string Message { get; set; } = string.Empty;
-}

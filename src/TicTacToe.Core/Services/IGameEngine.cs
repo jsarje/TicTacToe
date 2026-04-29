@@ -22,6 +22,15 @@ public interface IGameEngine
     GameSession PlayMove(GameSession session, int boardIndex);
 
     /// <summary>
+    /// Evaluates a move against the authoritative rules for the provided player.
+    /// </summary>
+    /// <param name="session">The current authoritative session.</param>
+    /// <param name="boardIndex">The zero-based board index to play.</param>
+    /// <param name="actingPlayer">The player attempting the move.</param>
+    /// <returns>The move decision and resulting session state.</returns>
+    GameMoveResult EvaluateMove(GameSession session, int boardIndex, PlayerMark actingPlayer);
+
+    /// <summary>
     /// Resets the session to a new game.
     /// </summary>
     /// <param name="session">The current session.</param>

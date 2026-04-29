@@ -1,0 +1,9 @@
+global using System.Net;
+global using System.Net.Http.Json;
+global using FluentAssertions;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using Microsoft.Extensions.DependencyInjection;
+global using TicTacToe.Core.Contracts;
+global using TicTacToe.Core.Models;
+global using TicTacToe.Web.Infrastructure;
+global using Xunit;

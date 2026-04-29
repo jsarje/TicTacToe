@@ -1,0 +1,24 @@
+<section class="game-status" aria-label="Game status">
+    <p class="game-status__label">Status</p>
+    <p class="@GetMessageClass()" role="status" aria-live="polite" aria-atomic="true">@Message</p>
+    @if (IsBusy)
+    {
+        <p class="game-status__meta">Synchronizing official state...</p>
+    }
+</section>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Message { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool IsBusy { get; set; }
+
+    [Parameter]
+    public bool IsError { get; set; }
+
+    private string GetMessageClass()
+    {
+        return IsError ? "game-status__message game-status__message--error" : "game-status__message";
+    }
+}

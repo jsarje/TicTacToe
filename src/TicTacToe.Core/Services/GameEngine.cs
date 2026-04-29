@@ -65,6 +65,34 @@ public sealed class GameEngine : IGameEngine
     }
 
     /// <inheritdoc/>
+    public GameMoveResult EvaluateMove(GameSession session, int boardIndex, PlayerMark actingPlayer)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+
+        if (boardIndex is < 0 or > 8)
+        {
+            throw new ArgumentOutOfRangeException(nameof(boardIndex), boardIndex, "Board index must be between 0 and 8.");
+        }
+
+        if (!session.IsBoardInteractive)
+        {
+            return GameMoveResult.CreateRejected(session, MoveRejectionReason.MatchComplete);
+        }
+
+        if (actingPlayer != session.CurrentPlayer)
+        {
+            return GameMoveResult.CreateRejected(session, MoveRejectionReason.WrongTurn);
+        }
+
+        if (session.Board[boardIndex].Mark is not null)
+        {
+            return GameMoveResult.CreateRejected(session, MoveRejectionReason.OccupiedSquare);
+        }
+
+        return GameMoveResult.CreateAccepted(PlayMove(session, boardIndex));
+    }
+
+    /// <inheritdoc/>
     public GameSession Restart(GameSession session)
     {
         ArgumentNullException.ThrowIfNull(session);

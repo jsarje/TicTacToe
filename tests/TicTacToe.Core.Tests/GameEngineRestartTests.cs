@@ -35,4 +35,19 @@ public sealed class GameEngineRestartTests
         restartedSession.Board.Should().AllSatisfy(space => space.Mark.Should().BeNull());
         restartedSession.WinningLine.Should().BeNull();
     }
+
+    [Fact]
+    public void EvaluateMove_ShouldAcceptValidMove()
+    {
+        // Arrange
+        var session = gameEngine.CreateNewSession();
+
+        // Act
+        var result = gameEngine.EvaluateMove(session, 4, PlayerMark.X);
+
+        // Assert
+        result.Accepted.Should().BeTrue();
+        result.Session.Board[4].Mark.Should().Be(PlayerMark.X);
+        result.Session.CurrentPlayer.Should().Be(PlayerMark.O);
+    }
 }

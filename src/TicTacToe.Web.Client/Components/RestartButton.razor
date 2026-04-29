@@ -1,0 +1,16 @@
+<button type="button" class="restart-button" disabled="@Disabled" @onclick="HandleRestartAsync">
+    Restart game
+</button>
+
+@code {
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter, EditorRequired]
+    public EventCallback OnRestart { get; set; }
+
+    private Task HandleRestartAsync()
+    {
+        return Disabled ? Task.CompletedTask : OnRestart.InvokeAsync();
+    }
+}

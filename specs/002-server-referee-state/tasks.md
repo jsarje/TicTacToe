@@ -25,10 +25,10 @@
 
 **Purpose**: Restructure the solution from standalone WASM into a hosted Blazor Web App with a dedicated client project and integration-test project.
 
-- [ ] T001 Replace the standalone web project with a Blazor Web App and client project in `TicTacToe.sln`, `src/TicTacToe.Web/TicTacToe.Web.csproj`, and `src/TicTacToe.Web.Client/TicTacToe.Web.Client.csproj`
-- [ ] T002 Add server, client, EF Core SQLite, and integration-test package references in `src/TicTacToe.Web/TicTacToe.Web.csproj`, `src/TicTacToe.Web.Client/TicTacToe.Web.Client.csproj`, `tests/TicTacToe.Web.Tests/TicTacToe.Web.Tests.csproj`, and `tests/TicTacToe.Web.IntegrationTests/TicTacToe.Web.IntegrationTests.csproj`
-- [ ] T003 [P] Configure startup settings and SQLite connection defaults in `src/TicTacToe.Web/Program.cs`, `src/TicTacToe.Web/appsettings.json`, and `src/TicTacToe.Web/appsettings.Development.json`
-- [ ] T004 [P] Add shared test usings and hosted-app test references in `tests/TicTacToe.Web.Tests/Usings.cs`, `tests/TicTacToe.Web.IntegrationTests/Usings.cs`, and `tests/TicTacToe.Web.IntegrationTests/TestWebApplicationFactory.cs`
+- [X] T001 Replace the standalone web project with a Blazor Web App and client project in `TicTacToe.sln`, `src/TicTacToe.Web/TicTacToe.Web.csproj`, and `src/TicTacToe.Web.Client/TicTacToe.Web.Client.csproj`
+- [X] T002 Add server, client, EF Core SQLite, and integration-test package references in `src/TicTacToe.Web/TicTacToe.Web.csproj`, `src/TicTacToe.Web.Client/TicTacToe.Web.Client.csproj`, `tests/TicTacToe.Web.Tests/TicTacToe.Web.Tests.csproj`, and `tests/TicTacToe.Web.IntegrationTests/TicTacToe.Web.IntegrationTests.csproj`
+- [X] T003 [P] Configure startup settings and SQLite connection defaults in `src/TicTacToe.Web/Program.cs`, `src/TicTacToe.Web/appsettings.json`, and `src/TicTacToe.Web/appsettings.Development.json`
+- [X] T004 [P] Add shared test usings and hosted-app test references in `tests/TicTacToe.Web.Tests/Usings.cs`, `tests/TicTacToe.Web.IntegrationTests/Usings.cs`, and `tests/TicTacToe.Web.IntegrationTests/TestWebApplicationFactory.cs`
 
 ---
 
@@ -38,14 +38,14 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T005 Create persisted match and browser identity entities in `src/TicTacToe.Web/Data/MatchSessionEntity.cs` and `src/TicTacToe.Web/Data/BrowserIdentityEntity.cs`
-- [ ] T006 [P] Create the EF Core context, entity configuration, and repository contract in `src/TicTacToe.Web/Data/TicTacToeDbContext.cs`, `src/TicTacToe.Web/Data/Configurations/MatchSessionEntityConfiguration.cs`, and `src/TicTacToe.Web/Infrastructure/IMatchSessionRepository.cs`
-- [ ] T007 [P] Create shared API contracts and rejection enums in `src/TicTacToe.Core/Contracts/MatchSnapshotDto.cs`, `src/TicTacToe.Core/Contracts/MoveRequestDto.cs`, `src/TicTacToe.Core/Contracts/MoveDecisionDto.cs`, `src/TicTacToe.Core/Contracts/RestartDecisionDto.cs`, and `src/TicTacToe.Core/Models/MoveRejectionReason.cs`
-- [ ] T008 [P] Create browser cookie identity infrastructure in `src/TicTacToe.Web/Infrastructure/IBrowserIdentityService.cs` and `src/TicTacToe.Web/Infrastructure/BrowserIdentityCookieService.cs`
-- [ ] T009 Create the authoritative application service boundary in `src/TicTacToe.Web/Infrastructure/IMatchRefereeService.cs`, `src/TicTacToe.Web/Infrastructure/MatchRefereeService.cs`, and `src/TicTacToe.Web/Infrastructure/MatchMappingExtensions.cs`
-- [ ] T010 [P] Configure server middleware, problem details, endpoint registration, and dependency injection in `src/TicTacToe.Web/Program.cs` and `src/TicTacToe.Web/Endpoints/MatchEndpoints.cs`
+- [X] T005 Create persisted match and browser identity entities in `src/TicTacToe.Web/Data/MatchSessionEntity.cs` and `src/TicTacToe.Web/Data/BrowserIdentityEntity.cs`
+- [X] T006 [P] Create the EF Core context, entity configuration, and repository contract in `src/TicTacToe.Web/Data/TicTacToeDbContext.cs`, `src/TicTacToe.Web/Data/Configurations/MatchSessionEntityConfiguration.cs`, and `src/TicTacToe.Web/Infrastructure/IMatchSessionRepository.cs`
+- [X] T007 [P] Create shared API contracts and rejection enums in `src/TicTacToe.Core/Contracts/MatchSnapshotDto.cs`, `src/TicTacToe.Core/Contracts/MoveRequestDto.cs`, `src/TicTacToe.Core/Contracts/MoveDecisionDto.cs`, `src/TicTacToe.Core/Contracts/RestartDecisionDto.cs`, and `src/TicTacToe.Core/Models/MoveRejectionReason.cs`
+- [X] T008 [P] Create browser cookie identity infrastructure in `src/TicTacToe.Web/Infrastructure/IBrowserIdentityService.cs` and `src/TicTacToe.Web/Infrastructure/BrowserIdentityCookieService.cs`
+- [X] T009 Create the authoritative application service boundary in `src/TicTacToe.Web/Infrastructure/IMatchRefereeService.cs`, `src/TicTacToe.Web/Infrastructure/MatchRefereeService.cs`, and `src/TicTacToe.Web/Infrastructure/MatchMappingExtensions.cs`
+- [X] T010 [P] Configure server middleware, problem details, endpoint registration, and dependency injection in `src/TicTacToe.Web/Program.cs` and `src/TicTacToe.Web/Endpoints/MatchEndpoints.cs`
 - [ ] T011 [P] Add the initial SQLite migration and database bootstrap in `src/TicTacToe.Web/Data/Migrations/` and `src/TicTacToe.Web/Program.cs`
-- [ ] T012 [P] Add server-side unit tests for browser identity lifetime, persistence mapping, and stale-state validation in `tests/TicTacToe.Web.Tests/Infrastructure/BrowserIdentityCookieServiceTests.cs`, `tests/TicTacToe.Web.Tests/Infrastructure/MatchMappingExtensionsTests.cs`, and `tests/TicTacToe.Web.Tests/Infrastructure/MatchRefereeServiceTests.cs`
+- [X] T012 [P] Add server-side unit tests for browser identity lifetime, persistence mapping, and stale-state validation in `tests/TicTacToe.Web.Tests/Infrastructure/BrowserIdentityCookieServiceTests.cs`, `tests/TicTacToe.Web.Tests/Infrastructure/MatchMappingExtensionsTests.cs`, and `tests/TicTacToe.Web.Tests/Infrastructure/MatchRefereeServiceTests.cs`
 
 **Checkpoint**: Foundation ready. All user stories can now proceed independently from the same persistence and API baseline.
 
@@ -61,18 +61,18 @@
 
 > **NOTE: Write these tests first and ensure they fail before implementation.**
 
-- [ ] T013 [P] [US1] Add integration tests for initial match creation, persisted reload, completed-match reload, and reopen-after-browser-restart behavior in `tests/TicTacToe.Web.IntegrationTests/MatchLoadEndpointsTests.cs`
-- [ ] T014 [P] [US1] Add integration tests for browser isolation using separate cookie containers in `tests/TicTacToe.Web.IntegrationTests/BrowserIsolationTests.cs`
-- [ ] T015 [P] [US1] Add bUnit tests for async initial load, persisted board rendering, and refresh-safe home state in `tests/TicTacToe.Web.Tests/Pages/HomeMatchRestoreTests.cs`
+- [X] T013 [P] [US1] Add integration tests for initial match creation, persisted reload, completed-match reload, and reopen-after-browser-restart behavior in `tests/TicTacToe.Web.IntegrationTests/MatchLoadEndpointsTests.cs`
+- [X] T014 [P] [US1] Add integration tests for browser isolation using separate cookie containers in `tests/TicTacToe.Web.IntegrationTests/BrowserIsolationTests.cs`
+- [X] T015 [P] [US1] Add bUnit tests for async initial load, persisted board rendering, and refresh-safe home state in `tests/TicTacToe.Web.Tests/Pages/HomeMatchRestoreTests.cs`
 
 ### Implementation for User Story 1
 
-- [ ] T016 [P] [US1] Implement SQLite-backed load/create persistence flow in `src/TicTacToe.Web/Data/MatchSessionRepository.cs` and `src/TicTacToe.Web/Data/TicTacToeDbContext.cs`
-- [ ] T017 [P] [US1] Implement persistent browser identity issuance and `GET /api/match` loading in `src/TicTacToe.Web/Infrastructure/BrowserIdentityCookieService.cs` and `src/TicTacToe.Web/Endpoints/MatchEndpoints.cs`
-- [ ] T018 [P] [US1] Create the client API loader that consumes the shared DTO contracts from `src/TicTacToe.Core/Contracts/` in `src/TicTacToe.Web.Client/Services/IGameApiClient.cs` and `src/TicTacToe.Web.Client/Services/GameApiClient.cs`
-- [ ] T019 [US1] Move the gameplay screen into the client project and hydrate the official match on page load in `src/TicTacToe.Web.Client/Pages/Home.razor`, `src/TicTacToe.Web.Client/Pages/Home.razor.cs`, and `src/TicTacToe.Web.Client/Components/GameStatus.razor`
-- [ ] T020 [US1] Render loading, completed-match reload, and initial-load retry states from the last confirmed snapshot in `src/TicTacToe.Web.Client/Pages/Home.razor`, `src/TicTacToe.Web.Client/Components/GameBoard.razor`, and `src/TicTacToe.Web.Client/Components/RestartButton.razor`
-- [ ] T021 [US1] Add load-path timing assertions to keep current-match retrieval under the feature budget in `tests/TicTacToe.Web.IntegrationTests/MatchLoadEndpointsTests.cs`
+- [X] T016 [P] [US1] Implement SQLite-backed load/create persistence flow in `src/TicTacToe.Web/Data/MatchSessionRepository.cs` and `src/TicTacToe.Web/Data/TicTacToeDbContext.cs`
+- [X] T017 [P] [US1] Implement persistent browser identity issuance and `GET /api/match` loading in `src/TicTacToe.Web/Infrastructure/BrowserIdentityCookieService.cs` and `src/TicTacToe.Web/Endpoints/MatchEndpoints.cs`
+- [X] T018 [P] [US1] Create the client API loader that consumes the shared DTO contracts from `src/TicTacToe.Core/Contracts/` in `src/TicTacToe.Web.Client/Services/IGameApiClient.cs` and `src/TicTacToe.Web.Client/Services/GameApiClient.cs`
+- [X] T019 [US1] Move the gameplay screen into the client project and hydrate the official match on page load in `src/TicTacToe.Web.Client/Pages/Home.razor`, `src/TicTacToe.Web.Client/Pages/Home.razor.cs`, and `src/TicTacToe.Web.Client/Components/GameStatus.razor`
+- [X] T020 [US1] Render loading, completed-match reload, and initial-load retry states from the last confirmed snapshot in `src/TicTacToe.Web.Client/Pages/Home.razor`, `src/TicTacToe.Web.Client/Components/GameBoard.razor`, and `src/TicTacToe.Web.Client/Components/RestartButton.razor`
+- [X] T021 [US1] Add load-path timing assertions to keep current-match retrieval under the feature budget in `tests/TicTacToe.Web.IntegrationTests/MatchLoadEndpointsTests.cs`
 
 **Checkpoint**: User Story 1 should now preserve one browser-owned match across refreshes and be testable without implementing move submission.
 
@@ -86,19 +86,19 @@
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T022 [P] [US2] Extend core rule tests for authoritative move acceptance, turn order, win detection, and draw detection in `tests/TicTacToe.Core.Tests/GameEngineMoveTests.cs`, `tests/TicTacToe.Core.Tests/GameEngineCompletionTests.cs`, and `tests/TicTacToe.Core.Tests/GameEngineRestartTests.cs`
-- [ ] T023 [P] [US2] Add API integration tests for `POST /api/match/moves` and `POST /api/match/restart` in `tests/TicTacToe.Web.IntegrationTests/MoveEndpointsTests.cs`
-- [ ] T024 [P] [US2] Add integration tests for concurrent conflicting move submissions and load-during-confirmation consistency in `tests/TicTacToe.Web.IntegrationTests/MoveConcurrencyTests.cs`
-- [ ] T025 [P] [US2] Add bUnit tests for async move submission, server-confirmed board updates, and restart synchronization in `tests/TicTacToe.Web.Tests/Pages/HomeServerGameplayTests.cs`
+- [X] T022 [P] [US2] Extend core rule tests for authoritative move acceptance, turn order, win detection, and draw detection in `tests/TicTacToe.Core.Tests/GameEngineMoveTests.cs`, `tests/TicTacToe.Core.Tests/GameEngineCompletionTests.cs`, and `tests/TicTacToe.Core.Tests/GameEngineRestartTests.cs`
+- [X] T023 [P] [US2] Add API integration tests for `POST /api/match/moves` and `POST /api/match/restart` in `tests/TicTacToe.Web.IntegrationTests/MoveEndpointsTests.cs`
+- [X] T024 [P] [US2] Add integration tests for concurrent conflicting move submissions and load-during-confirmation consistency in `tests/TicTacToe.Web.IntegrationTests/MoveConcurrencyTests.cs`
+- [X] T025 [P] [US2] Add bUnit tests for async move submission, server-confirmed board updates, and restart synchronization in `tests/TicTacToe.Web.Tests/Pages/HomeServerGameplayTests.cs`
 
 ### Implementation for User Story 2
 
-- [ ] T026 [P] [US2] Refactor the core engine for server-authoritative move evaluation and restart behavior in `src/TicTacToe.Core/Services/IGameEngine.cs` and `src/TicTacToe.Core/Services/GameEngine.cs`
-- [ ] T027 [P] [US2] Implement revision-aware move application, atomic conflict rejection, and restart persistence in `src/TicTacToe.Web/Infrastructure/MatchRefereeService.cs` and `src/TicTacToe.Web/Data/MatchSessionRepository.cs`
-- [ ] T028 [US2] Implement `POST /api/match/moves` and `POST /api/match/restart` in `src/TicTacToe.Web/Endpoints/MatchEndpoints.cs`
-- [ ] T029 [US2] Wire move and restart requests through the client API service in `src/TicTacToe.Web.Client/Services/GameApiClient.cs` and `src/TicTacToe.Web.Client/Pages/Home.razor.cs`
-- [ ] T030 [US2] Update the board, status, and restart components to render only server-confirmed state and disable controls during round-trips in `src/TicTacToe.Web.Client/Components/GameBoard.razor`, `src/TicTacToe.Web.Client/Components/GameStatus.razor`, and `src/TicTacToe.Web.Client/Components/RestartButton.razor`
-- [ ] T031 [US2] Add move and restart latency assertions to keep the hot path within the feature budget in `tests/TicTacToe.Web.IntegrationTests/MoveEndpointsTests.cs`
+- [X] T026 [P] [US2] Refactor the core engine for server-authoritative move evaluation and restart behavior in `src/TicTacToe.Core/Services/IGameEngine.cs` and `src/TicTacToe.Core/Services/GameEngine.cs`
+- [X] T027 [P] [US2] Implement revision-aware move application, atomic conflict rejection, and restart persistence in `src/TicTacToe.Web/Infrastructure/MatchRefereeService.cs` and `src/TicTacToe.Web/Data/MatchSessionRepository.cs`
+- [X] T028 [US2] Implement `POST /api/match/moves` and `POST /api/match/restart` in `src/TicTacToe.Web/Endpoints/MatchEndpoints.cs`
+- [X] T029 [US2] Wire move and restart requests through the client API service in `src/TicTacToe.Web.Client/Services/GameApiClient.cs` and `src/TicTacToe.Web.Client/Pages/Home.razor.cs`
+- [X] T030 [US2] Update the board, status, and restart components to render only server-confirmed state and disable controls during round-trips in `src/TicTacToe.Web.Client/Components/GameBoard.razor`, `src/TicTacToe.Web.Client/Components/GameStatus.razor`, and `src/TicTacToe.Web.Client/Components/RestartButton.razor`
+- [X] T031 [US2] Add move and restart latency assertions to keep the hot path within the feature budget in `tests/TicTacToe.Web.IntegrationTests/MoveEndpointsTests.cs`
 
 **Checkpoint**: User Story 2 should now provide authoritative move and restart behavior with server-owned win and draw outcomes.
 
@@ -112,16 +112,16 @@
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T032 [P] [US3] Add API integration tests for stale revision, wrong turn, completed match, and temporary persistence failures in `tests/TicTacToe.Web.IntegrationTests/MoveFailureEndpointsTests.cs`
-- [ ] T033 [P] [US3] Add bUnit tests for rejection messaging, loading notices, retry behavior, and assistive-technology announcements in `tests/TicTacToe.Web.Tests/Pages/HomeFailureStateTests.cs`
+- [X] T032 [P] [US3] Add API integration tests for stale revision, wrong turn, completed match, and temporary persistence failures in `tests/TicTacToe.Web.IntegrationTests/MoveFailureEndpointsTests.cs`
+- [X] T033 [P] [US3] Add bUnit tests for rejection messaging, loading notices, retry behavior, and assistive-technology announcements in `tests/TicTacToe.Web.Tests/Pages/HomeFailureStateTests.cs`
 - [ ] T034 [P] [US3] Add integration coverage for preserving the last confirmed snapshot during transient failures in `tests/TicTacToe.Web.IntegrationTests/MatchLoadEndpointsTests.cs` and `tests/TicTacToe.Web.IntegrationTests/MoveFailureEndpointsTests.cs`
 
 ### Implementation for User Story 3
 
-- [ ] T035 [P] [US3] Implement rejection-message mapping and retry-safe problem-details handling in `src/TicTacToe.Web/Infrastructure/MoveDecisionMessageFactory.cs` and `src/TicTacToe.Web/Program.cs`
-- [ ] T036 [P] [US3] Add deterministic fault injection hooks for repository failure tests in `src/TicTacToe.Web/Data/MatchSessionRepository.cs` and `tests/TicTacToe.Web.IntegrationTests/TestWebApplicationFactory.cs`
-- [ ] T037 [US3] Implement stale-state refresh, last-confirmed-state preservation, and retry commands in `src/TicTacToe.Web.Client/Pages/Home.razor` and `src/TicTacToe.Web.Client/Pages/Home.razor.cs`
-- [ ] T038 [US3] Add accessible loading, rejection, and failure-state presentation in `src/TicTacToe.Web.Client/Components/GameStatus.razor`, `src/TicTacToe.Web.Client/Components/GameBoard.razor`, `src/TicTacToe.Web.Client/Components/RestartButton.razor`, and `src/TicTacToe.Web.Client/Pages/Home.razor.css`
+- [X] T035 [P] [US3] Implement rejection-message mapping and retry-safe problem-details handling in `src/TicTacToe.Web/Infrastructure/MoveDecisionMessageFactory.cs` and `src/TicTacToe.Web/Program.cs`
+- [X] T036 [P] [US3] Add deterministic fault injection hooks for repository failure tests in `src/TicTacToe.Web/Data/MatchSessionRepository.cs` and `tests/TicTacToe.Web.IntegrationTests/TestWebApplicationFactory.cs`
+- [X] T037 [US3] Implement stale-state refresh, last-confirmed-state preservation, and retry commands in `src/TicTacToe.Web.Client/Pages/Home.razor` and `src/TicTacToe.Web.Client/Pages/Home.razor.cs`
+- [X] T038 [US3] Add accessible loading, rejection, and failure-state presentation in `src/TicTacToe.Web.Client/Components/GameStatus.razor`, `src/TicTacToe.Web.Client/Components/GameBoard.razor`, `src/TicTacToe.Web.Client/Components/RestartButton.razor`, and `src/TicTacToe.Web.Client/Pages/Home.razor.css`
 - [ ] T039 [US3] Verify stale-state and failure-path UX consistency against the contract in `tests/TicTacToe.Web.Tests/Pages/HomeFailureStateTests.cs` and `specs/002-server-referee-state/contracts/server-referee-api.md`
 
 **Checkpoint**: User Story 3 should now explain rejected or delayed actions clearly without losing the authoritative game snapshot.
@@ -132,9 +132,9 @@
 
 **Purpose**: Clean up migration leftovers, document the new hosted architecture, and complete cross-story validation.
 
-- [ ] T040 [P] Remove obsolete standalone hosting artifacts and align the hosted app shell in `src/TicTacToe.Web/wwwroot/`, `src/TicTacToe.Web.Client/wwwroot/`, `src/TicTacToe.Web/App.razor`, and `src/TicTacToe.Web.Client/App.razor`
-- [ ] T041 [P] Update developer setup, runtime expectations, and deployment guidance in `README.md` and `specs/002-server-referee-state/quickstart.md`
-- [ ] T042 [P] Add final regression coverage for hosted app startup and shared wiring in `tests/TicTacToe.Web.IntegrationTests/HostedAppSmokeTests.cs`
+- [X] T040 [P] Remove obsolete standalone hosting artifacts and align the hosted app shell in `src/TicTacToe.Web/wwwroot/`, `src/TicTacToe.Web.Client/wwwroot/`, `src/TicTacToe.Web/App.razor`, and `src/TicTacToe.Web.Client/App.razor`
+- [X] T041 [P] Update developer setup, runtime expectations, and deployment guidance in `README.md` and `specs/002-server-referee-state/quickstart.md`
+- [X] T042 [P] Add final regression coverage for hosted app startup and shared wiring in `tests/TicTacToe.Web.IntegrationTests/HostedAppSmokeTests.cs`
 - [ ] T043 Run the full validation checklist and record manual performance and UX evidence from `specs/002-server-referee-state/quickstart.md`
 
 ---

@@ -182,6 +182,10 @@ coverage*.info
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
+*.db
+*.db-shm
+*.db-wal
+appsettings.Local.json
 
 # NCrunch
 _NCrunch_*

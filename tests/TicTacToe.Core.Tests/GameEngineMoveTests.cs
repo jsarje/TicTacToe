@@ -33,4 +33,19 @@ public sealed class GameEngineMoveTests
         unchangedSession.CurrentPlayer.Should().Be(PlayerMark.O);
         unchangedSession.Board.Count(space => space.Mark is not null).Should().Be(1);
     }
+
+    [Fact]
+    public void EvaluateMove_ShouldRejectWrongTurn()
+    {
+        // Arrange
+        var session = gameEngine.CreateNewSession();
+
+        // Act
+        var result = gameEngine.EvaluateMove(session, 0, PlayerMark.O);
+
+        // Assert
+        result.Accepted.Should().BeFalse();
+        result.RejectionReason.Should().Be(MoveRejectionReason.WrongTurn);
+        result.Session.Should().BeSameAs(session);
+    }
 }

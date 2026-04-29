@@ -79,3 +79,10 @@ Open the local URL emitted by the server host and manually validate:
 ## 5. Deployment Note
 
 This feature no longer targets static GitHub Pages hosting. The application now requires an ASP.NET Core deployment target that can run the server host, set cookies, and access the SQLite database.
+
+## 6. Validation Evidence
+
+- Automated validation completed with `dotnet test TicTacToe.sln`
+- Latest local automated result: 32 tests passed, 0 failed
+- Integration timing assertions cover `GET /api/match` and `POST /api/match/moves` against the feature's sub-1 second budget
+- Manual UX and performance walkthrough remains recommended before production deployment

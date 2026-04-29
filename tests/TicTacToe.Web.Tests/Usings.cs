@@ -1,8 +1,9 @@
 global using Bunit;
 global using FluentAssertions;
 global using Microsoft.Extensions.DependencyInjection;
+global using TicTacToe.Core.Contracts;
 global using TicTacToe.Core.Models;
-global using TicTacToe.Core.Services;
-global using TicTacToe.Web.Components;
-global using TicTacToe.Web.Pages;
+global using TicTacToe.Web.Client.Components;
+global using TicTacToe.Web.Client.Pages;
+global using TicTacToe.Web.Client.Services;
 global using Xunit;
