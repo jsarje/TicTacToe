@@ -29,6 +29,27 @@ public sealed class MoveFailureEndpointsTests : IClassFixture<TestWebApplication
     }
 
     [Fact]
+    public async Task MoveEndpoint_ShouldPreserveLastConfirmedSnapshotWhenSaveFails()
+    {
+        // Arrange
+        using var client = factory.CreateClient(new WebApplicationFactoryClientOptions { HandleCookies = true });
+        var baseline = await client.GetFromJsonAsync<MatchSnapshotDto>("/api/match");
+        factory.FaultInjectionState.TriggerSaveFailure();
+
+        // Act
+        var failedResponse = await client.PostAsJsonAsync("/api/match/moves", new MoveRequestDto(0, PlayerMark.X, baseline!.Revision));
+        var recovered = await client.GetFromJsonAsync<MatchSnapshotDto>("/api/match");
+
+        // Assert
+        failedResponse.StatusCode.Should().Be(HttpStatusCode.ServiceUnavailable);
+        recovered.Should().NotBeNull();
+        recovered!.MatchId.Should().Be(baseline.MatchId);
+        recovered.Revision.Should().Be(baseline.Revision);
+        recovered.Board.Should().Equal(baseline.Board);
+        recovered.CurrentPlayer.Should().Be(baseline.CurrentPlayer);
+    }
+
+    [Fact]
     public async Task MoveEndpoint_ShouldRejectStaleRevision()
     {
         // Arrange

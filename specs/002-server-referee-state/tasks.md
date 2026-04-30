@@ -44,7 +44,7 @@
 - [X] T008 [P] Create browser cookie identity infrastructure in `src/TicTacToe.Web/Infrastructure/IBrowserIdentityService.cs` and `src/TicTacToe.Web/Infrastructure/BrowserIdentityCookieService.cs`
 - [X] T009 Create the authoritative application service boundary in `src/TicTacToe.Web/Infrastructure/IMatchRefereeService.cs`, `src/TicTacToe.Web/Infrastructure/MatchRefereeService.cs`, and `src/TicTacToe.Web/Infrastructure/MatchMappingExtensions.cs`
 - [X] T010 [P] Configure server middleware, problem details, endpoint registration, and dependency injection in `src/TicTacToe.Web/Program.cs` and `src/TicTacToe.Web/Endpoints/MatchEndpoints.cs`
-- [ ] T011 [P] Add the initial SQLite migration and database bootstrap in `src/TicTacToe.Web/Data/Migrations/` and `src/TicTacToe.Web/Program.cs`
+- [X] T011 [P] Add the initial SQLite migration and database bootstrap in `src/TicTacToe.Web/Data/Migrations/` and `src/TicTacToe.Web/Program.cs`
 - [X] T012 [P] Add server-side unit tests for browser identity lifetime, persistence mapping, and stale-state validation in `tests/TicTacToe.Web.Tests/Infrastructure/BrowserIdentityCookieServiceTests.cs`, `tests/TicTacToe.Web.Tests/Infrastructure/MatchMappingExtensionsTests.cs`, and `tests/TicTacToe.Web.Tests/Infrastructure/MatchRefereeServiceTests.cs`
 
 **Checkpoint**: Foundation ready. All user stories can now proceed independently from the same persistence and API baseline.
@@ -114,7 +114,7 @@
 
 - [X] T032 [P] [US3] Add API integration tests for stale revision, wrong turn, completed match, and temporary persistence failures in `tests/TicTacToe.Web.IntegrationTests/MoveFailureEndpointsTests.cs`
 - [X] T033 [P] [US3] Add bUnit tests for rejection messaging, loading notices, retry behavior, and assistive-technology announcements in `tests/TicTacToe.Web.Tests/Pages/HomeFailureStateTests.cs`
-- [ ] T034 [P] [US3] Add integration coverage for preserving the last confirmed snapshot during transient failures in `tests/TicTacToe.Web.IntegrationTests/MatchLoadEndpointsTests.cs` and `tests/TicTacToe.Web.IntegrationTests/MoveFailureEndpointsTests.cs`
+- [X] T034 [P] [US3] Add integration coverage for preserving the last confirmed snapshot during transient failures in `tests/TicTacToe.Web.IntegrationTests/MatchLoadEndpointsTests.cs` and `tests/TicTacToe.Web.IntegrationTests/MoveFailureEndpointsTests.cs`
 
 ### Implementation for User Story 3
 
@@ -122,7 +122,7 @@
 - [X] T036 [P] [US3] Add deterministic fault injection hooks for repository failure tests in `src/TicTacToe.Web/Data/MatchSessionRepository.cs` and `tests/TicTacToe.Web.IntegrationTests/TestWebApplicationFactory.cs`
 - [X] T037 [US3] Implement stale-state refresh, last-confirmed-state preservation, and retry commands in `src/TicTacToe.Web.Client/Pages/Home.razor` and `src/TicTacToe.Web.Client/Pages/Home.razor.cs`
 - [X] T038 [US3] Add accessible loading, rejection, and failure-state presentation in `src/TicTacToe.Web.Client/Components/GameStatus.razor`, `src/TicTacToe.Web.Client/Components/GameBoard.razor`, `src/TicTacToe.Web.Client/Components/RestartButton.razor`, and `src/TicTacToe.Web.Client/Pages/Home.razor.css`
-- [ ] T039 [US3] Verify stale-state and failure-path UX consistency against the contract in `tests/TicTacToe.Web.Tests/Pages/HomeFailureStateTests.cs` and `specs/002-server-referee-state/contracts/server-referee-api.md`
+- [X] T039 [US3] Verify stale-state and failure-path UX consistency against the contract in `tests/TicTacToe.Web.Tests/Pages/HomeFailureStateTests.cs` and `specs/002-server-referee-state/contracts/server-referee-api.md`
 
 **Checkpoint**: User Story 3 should now explain rejected or delayed actions clearly without losing the authoritative game snapshot.
 
@@ -135,7 +135,7 @@
 - [X] T040 [P] Remove obsolete standalone hosting artifacts and align the hosted app shell in `src/TicTacToe.Web/wwwroot/`, `src/TicTacToe.Web.Client/wwwroot/`, `src/TicTacToe.Web/App.razor`, and `src/TicTacToe.Web.Client/App.razor`
 - [X] T041 [P] Update developer setup, runtime expectations, and deployment guidance in `README.md` and `specs/002-server-referee-state/quickstart.md`
 - [X] T042 [P] Add final regression coverage for hosted app startup and shared wiring in `tests/TicTacToe.Web.IntegrationTests/HostedAppSmokeTests.cs`
-- [ ] T043 Run the full validation checklist and record manual performance and UX evidence from `specs/002-server-referee-state/quickstart.md`
+- [X] T043 Run the full validation checklist and record manual performance and UX evidence from `specs/002-server-referee-state/quickstart.md`
 
 ---
 

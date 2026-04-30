@@ -83,6 +83,7 @@ This feature no longer targets static GitHub Pages hosting. The application now 
 ## 6. Validation Evidence
 
 - Automated validation completed with `dotnet test TicTacToe.sln`
-- Latest local automated result: 32 tests passed, 0 failed
+- Latest local automated result on 2026-04-30: 40 tests passed, 0 failed
 - Integration timing assertions cover `GET /api/match` and `POST /api/match/moves` against the feature's sub-1 second budget
-- Manual UX and performance walkthrough remains recommended before production deployment
+- Transient-failure validation now covers preserving the last confirmed snapshot after temporary load and save failures, plus client retry behavior and stale-state messaging against the API contract
+- Hosted-app startup and end-to-end wiring remain covered by the smoke and integration suites; a human browser walkthrough is still recommended before production deployment

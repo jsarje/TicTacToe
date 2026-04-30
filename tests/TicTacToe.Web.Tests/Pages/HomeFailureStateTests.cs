@@ -36,6 +36,51 @@ public sealed class HomeFailureStateTests
     }
 
     [Fact]
+    public void Home_ShouldRetryAndClearTransientFailureUsingLatestOfficialSnapshot()
+    {
+        // Arrange
+        var confirmed = new MatchSnapshotDto(
+            Guid.NewGuid(),
+            2,
+            [PlayerMark.X, PlayerMark.O, null, null, null, null, null, null, null],
+            PlayerMark.X,
+            GameResult.InProgress,
+            null,
+            true,
+            "Player X to move.",
+            DateTimeOffset.UtcNow);
+        var refreshed = confirmed with
+        {
+            Revision = 3,
+            Board = [PlayerMark.X, PlayerMark.O, PlayerMark.X, null, null, null, null, null, null],
+            CurrentPlayer = PlayerMark.O,
+            StatusMessage = "Player O to move.",
+        };
+        var loadCount = 0;
+        var client = new StubGameApiClient
+        {
+            LoadAsyncHandler = _ =>
+            {
+                loadCount++;
+                return Task.FromResult(loadCount == 1 ? confirmed : refreshed);
+            },
+            SubmitMoveAsyncHandler = (_, _) => throw new GameApiException("The server could not save the official match state. Try again."),
+            RestartAsyncHandler = _ => Task.FromResult(new RestartDecisionDto("Player X to move.", confirmed)),
+        };
+        using var context = TestContextFactory.Create(client);
+        var component = context.Render<Home>();
+
+        // Act
+        component.FindAll(".game-board__space")[2].Click();
+        component.Find(".retry-button").Click();
+
+        // Assert
+        component.Markup.Should().NotContain("Retry sync");
+        component.Find("[role='status']").TextContent.Trim().Should().Be("Player O to move.");
+        component.FindAll(".game-board__space")[2].TextContent.Trim().Should().Be("X");
+    }
+
+    [Fact]
     public void Home_ShouldRenderRejectionMessageFromServer()
     {
         // Arrange
@@ -64,6 +109,25 @@ public sealed class HomeFailureStateTests
         // Assert
         component.Markup.Should().Contain("Your board was out of date. The latest official state has been reloaded.");
         component.FindAll(".game-board__space")[4].TextContent.Trim().Should().Be("X");
+    }
+
+    [Fact]
+    public void Home_ShouldRenderRetryFriendlyProblemDetailMessageFromInitialLoad()
+    {
+        // Arrange
+        var client = new StubGameApiClient
+        {
+            LoadAsyncHandler = _ => throw new GameApiException("The server could not load the official match state. Try again."),
+        };
+        using var context = TestContextFactory.Create(client);
+
+        // Act
+        var component = context.Render<Home>();
+
+        // Assert
+        component.Markup.Should().Contain("Board unavailable");
+        component.Markup.Should().Contain("The server could not load the official match state. Try again.");
+        component.Markup.Should().Contain("Retry");
     }
 
     [Fact]

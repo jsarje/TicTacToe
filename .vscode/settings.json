@@ -11,7 +11,8 @@
         ".specify/scripts/powershell/": true,
         "git rev-parse": true,
         "&": true,
-        "ConvertTo-Json": true
+        "ConvertTo-Json": true,
+        "dotnet ef": true
     }
 }
 
